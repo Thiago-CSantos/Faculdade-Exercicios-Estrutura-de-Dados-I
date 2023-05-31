@@ -62,6 +62,69 @@ void printNomes(){
 	}
 }
 
+//Fazer as seguintes funções:
+int tamanhoLista(){
+	//deve calcular quantos nós existem na lista
+	//e retornar
+	struct No* aux = inicio;
+	int cont = 0;
+	
+	while(aux!= NULL){
+		aux = aux->proximo;
+		cont++;
+	}
+	
+	return cont;
+	
+}
+
+
+struct No *procura(char Nome[]){
+	// deve procurar o nome na lista
+	//caso não encontre, retorna NULL
+	//se encontrar retora a nó na lista onde o nome está
+	
+	struct No* aux = inicio;
+	
+	while(aux!=NULL){
+		
+		if(strcmp(aux->nome, Nome) == 0){
+			return aux->nome;
+		}
+		else if (strcmp(aux->nome, Nome) == 1){
+			return NULL;
+		}
+		
+		aux = aux->proximo;
+	
+	}
+	
+}
+
+void inverterLista(){
+	//dada uma lista
+	//criar outra para imprimir a lista na ordem inversa;
+	//ou seja a lista for Luiz, hugo, zezinho
+	//deve gerar a Zezinho, hugo, luiz
+	
+	struct No* aux = inicio;
+	struct No* aux2 = NULL;
+	
+	
+	while(aux != NULL){
+		
+		aux2 = aux->proximo;
+		aux->proximo = inicio;
+		inicio = aux;
+		aux = aux2;
+	}
+	
+	do{
+		printf("\n %s", aux->nome);
+		aux= aux->proximo;
+	}while(aux!=NULL);
+}
+
 int main(){
 	
 //	char array[4][20] = {"Thiago",
@@ -81,5 +144,11 @@ int main(){
 	inserirNoInicio("Gui");
 	
 	printNomes();
+	int n =tamanhoLista(); printf("%d", n);
+	
+	struct No* p = procura("Thiago"); printf(" %s\n", p->nome);
+	
+	inverterLista();
+	
 	
 }
