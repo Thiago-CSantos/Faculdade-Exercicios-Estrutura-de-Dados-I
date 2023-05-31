@@ -64,16 +64,21 @@ void printNomes(){
 
 int main(){
 	
-	char array[4][20] = {"Thiago",
-	                    "Raphael", 
-						"Rafael",
-						"Guilherme"
-						};
+//	char array[4][20] = {"Thiago",
+//	                    "Raphael", 
+//						"Rafael",
+//						"Guilherme"
+//						};
+//	
+//	int i;
+//	for(i=0; i<4; i++){
+//		inserirNoFinal(array[i]);	
+//	}
 	
-	int i;
-	for(i=0; i<4; i++){
-		inserirNoFinal(array[i]);	
-	}
+	inserirNoFinal("Thiago");
+	inserirNoFinal("Rafael");
+	inserirNoFinal("Cris");
+	inserirNoInicio("Gui");
 	
 	printNomes();
 	
