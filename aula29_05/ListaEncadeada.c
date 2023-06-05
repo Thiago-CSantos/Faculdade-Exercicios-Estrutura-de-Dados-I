@@ -13,12 +13,13 @@ struct No* inicio = NULL;
 	adiciona um nome à lista
 */
 
-void inserirNoInicio (char nome[]){
+void inserirNoInicio (char Nome[]){
 	// 1º passo: construir um nó para armazernar o nome
 	struct No *novo= malloc(sizeof(struct No));
 	
 	//2º passo: guardar as informações no No
-	strcpy(novo->nome, nome);
+	strcpy(novo->nome, Nome);
+	
 	//3º passo:
 	novo->proximo = inicio;
 	
@@ -71,7 +72,7 @@ int tamanhoLista(){
 	
 	while(aux!= NULL){
 		aux = aux->proximo;
-		cont++;
+		cont++; // conta o tamanho da lista
 	}
 	
 	return cont;
@@ -104,25 +105,25 @@ struct No *procura(char Nome[]){
 void inverterLista(){
 	//dada uma lista
 	//criar outra para imprimir a lista na ordem inversa;
-	//ou seja a lista for Luiz, hugo, zezinho
-	//deve gerar a Zezinho, hugo, luiz
 	
-	struct No* aux = inicio;
-	struct No* aux2 = NULL;
+	// 1º guarda a lista em  um auxiliar
+	struct No* inicioAntigo = inicio;
 	
+	// 2º destruir o inicio
+	inicio = NULL;
 	
-	while(aux != NULL){
+	//3º para cada elemento da lista antiga 
+	while(inicioAntigo!=NULL){
+		//colocar esse elemento na nova lista, inserindo
+		//na "cabeça", para inverter a lista
+		inserirNoInicio(inicioAntigo->nome);
 		
-		aux2 = aux->proximo;
-		aux->proximo = inicio;
-		inicio = aux;
-		aux = aux2;
+		//passar para proximo elemento da lista antiga
+		inicioAntigo = inicioAntigo->proximo;
 	}
 	
-	do{
-		printf("\n %s", aux->nome);
-		aux= aux->proximo;
-	}while(aux!=NULL);
+	printNomes();
+	
 }
 
 int main(){
@@ -144,9 +145,11 @@ int main(){
 	inserirNoInicio("Gui");
 	
 	printNomes();
-	int n =tamanhoLista(); printf("%d", n);
+	int n =tamanhoLista(); 
+	printf("\ntamanho: %d\n", n);
 	
-	struct No* p = procura("Thiago"); printf(" %s\n", p->nome);
+	struct No* p = procura("Thiago"); 
+	printf(" %s\n", p->nome);
 	
 	inverterLista();
 	
